@@ -134,14 +134,18 @@ function Product(ID, name, description, price, brand, sizes, activeSize, quantit
     this.getAverageRating = () => {
         let sumOfOne = 0;
         let sumOfAllReviews = 0;
-        for (let i = 0; i < this.reviews.lenght; i++) {
-            for (let j = 0; i < this.reviews[i].getRating.lenght; j++) {
-                sumOfOne += reviews.getRating[j];
+        for (let i = 0; i < this.reviews.length; i++) {
+            let review = this.reviews[i];
+            let ratings = review.getRating();
+            let keys = Object.keys(ratings);
+            for (let key of keys) {
+                let rate = ratings[key];
+                sumOfOne += rate;
             }
-            sumOfAllReviews += sumOfOne / this.reviews[i].getRating.lenght;
+            sumOfAllReviews += sumOfOne / keys.length;
             sumOfOne = 0;
         }
-        return sumOfAllReviews / reviews.lenght;
+        return sumOfAllReviews / reviews.length;
     }
 }
 
@@ -155,11 +159,10 @@ function searchProducts(products, search) {
 }
 
 /**
- * 
- * @param {Review[]} products 
- * @param {()}
-    
- }} sortRule 
+ * Sorts products by sort rule and return sorted array.
+ * @param {Review[]} products array of products.
+ * @param {Function} sortRule How to sort arr.
+ * @returns sorted arr.
  */
 function sortProducts(products, sortRule) {
     return products.sort(sortRule);
@@ -188,17 +191,24 @@ for (let i = 0; i < productsNumber; i++) {
     products.push(new Product(i, name, `cool ${name}`, i * 10, `${i}-Nike`, sizes, i + i, i * 2 + 1, new Date(), reviews));
 }
 
-function toConsoleBtLines(array) {
+/**
+ * Logging array items to console (one item = oune line)
+ * @param {[]} array default array.
+ */
+function toConsoleByLines(array) {
     for (let i = 0; i < array.length; i++) {
         console.log(array[i]);
     }
     console.log('\n');
 }
 
-//tests
-toConsoleBtLines(searchProducts(products, `2`));// mas of 2 products
-toConsoleBtLines(searchProducts(products, `cool 2`));// mas of 1 product
+// //tests
+// toConsoleByLines(searchProducts(products, `2`));// mas of 2 products
+// toConsoleByLines(searchProducts(products, `cool 2`));// mas of 1 product
 
-toConsoleBtLines(sortProducts(products, (a, b) => b.getPrice() - a.getPrice()));
+let p = products[0];
+console.log(p.getAverageRating());// mas of 1 product
+
+// toConsoleByLines(sortProducts(products, (a, b) => b.getPrice() - a.getPrice()));
 
 
