@@ -165,7 +165,7 @@ function searchProducts(products, search) {
  * @returns sorted arr.
  */
 function sortProducts(products, sortRule) {
-    return products.sort(sortRule);
+    return products.sort((a, b) => a[sortRule] - b[sortRule]);
 }
 
 
@@ -180,7 +180,13 @@ for (let i = 0; i < reviewsNumber; i++) {
         value: j,
         quality: j,
     };
-    reviews.push(new Review(i, `user ${i}`, new Date(), `some comment`, rating));
+    const r = new Review();
+    r.setId(i);
+    r.setAuthor(`user ${i}`);
+    r.setDate(new Date());
+    r.setComment(`some comment`);
+    r.setRating(rating);
+    reviews.push(r);
 }
 
 const productsNumber = 20;
@@ -209,7 +215,8 @@ toConsoleByLines(searchProducts(products, `cool 2`));// mas of 1 product
 let p = products[0];
 console.log(p.getAverageRating());// average rating should be 8.2
 
-toConsoleByLines(sortProducts(products, (a, b) => b.getPrice() - a.getPrice()));
+toConsoleByLines(sortProducts(products, `price`));
+
 
 
 
