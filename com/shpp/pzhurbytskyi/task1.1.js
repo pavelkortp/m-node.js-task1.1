@@ -202,13 +202,14 @@ function toConsoleByLines(array) {
     console.log('\n');
 }
 
-// //tests
-// toConsoleByLines(searchProducts(products, `2`));// mas of 2 products
-// toConsoleByLines(searchProducts(products, `cool 2`));// mas of 1 product
+//tests
+toConsoleByLines(searchProducts(products, `2`));// mas of 2 products
+toConsoleByLines(searchProducts(products, `cool 2`));// mas of 1 product
 
 let p = products[0];
-console.log(p.getAverageRating());// mas of 1 product
+console.log(p.getAverageRating());// average rating should be 8.2
 
-// toConsoleByLines(sortProducts(products, (a, b) => b.getPrice() - a.getPrice()));
+toConsoleByLines(sortProducts(products, (a, b) => b.getPrice() - a.getPrice()));
+
 
 
