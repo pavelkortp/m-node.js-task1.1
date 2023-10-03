@@ -4,7 +4,7 @@
  * @param {string} author Author of review.
  * @param {Date} date date
  * @param {string} comment comment
- * @param {[]} rating Associate Array with keys 'service', 'price', 'value', 'quality'
+ * @param {{}} rating Associate Array with keys 'service', 'price', 'value', 'quality'
  */
 function Review(ID, author, date, comment, rating) {
     this.ID = ID;
@@ -27,7 +27,6 @@ function Review(ID, author, date, comment, rating) {
     this.setRating = (rating) => { this.rating = rating };
 }
 
-
 /**
  * Creates a product.
  * @param {string} ID Product key (unique value)
@@ -35,12 +34,12 @@ function Review(ID, author, date, comment, rating) {
  * @param {string} description Short description
  * @param {number} price Price of one item
  * @param {string} brand Brand
- * @param {Array[string]} sizes Array of sizes
+ * @param {string[]} sizes Array of sizes
  * @param {string} activeSize Active size
  * @param {number} quantity Quantity of products available
  * @param {Date} date Date
- * @param {Array[Review]} reviews Array of rewiews
- * @param {Array[string]} images images.
+ * @param {Review[]} reviews Array of rewiews
+ * @param {string[]} images images.
  */
 function Product(ID, name, description, price, brand, sizes, activeSize, quantity, date, reviews, images) {
     this.ID = ID;
@@ -93,7 +92,12 @@ function Product(ID, name, description, price, brand, sizes, activeSize, quantit
      * @param {string} name image name.
      * @returns finded image.
      */
-    this.getImages = (name) => images[name];
+    this.getImage = (name) => {
+        if (name !== undefined) {
+            return images[name]
+        }
+        return images[0];
+    };
 
     /**
      * Adds size to sizes array.
@@ -123,25 +127,78 @@ function Product(ID, name, description, price, brand, sizes, activeSize, quantit
         this.reviews = this.reviews.filter((e) => e != review);
     };
 
+    /**
+     * Calculate and returns average rating for product.
+     * @returns product's average rating.
+     */
     this.getAverageRating = () => {
-        let sum1 = 0;
-        let sum2 = 0;
-        for(let i = 0; i<this.reviews.lenght; i++){
-            for(let j = 0; i<this.reviews[i].getRating.lenght; j++){
-                sum1+=reviews.getRating[j];
+        let sumOfOne = 0;
+        let sumOfAllReviews = 0;
+        for (let i = 0; i < this.reviews.lenght; i++) {
+            for (let j = 0; i < this.reviews[i].getRating.lenght; j++) {
+                sumOfOne += reviews.getRating[j];
             }
-            sum2+=sum1/this.reviews[i].getRating.lenght;
-            sum1 = 0;
+            sumOfAllReviews += sumOfOne / this.reviews[i].getRating.lenght;
+            sumOfOne = 0;
         }
-        return sum2/reviews.lenght;
+        return sumOfAllReviews / reviews.lenght;
     }
+}
 
+/**
+ * Finds products by key-word.
+ * @param {Product[]} products array of products.
+ * @param {string} search key-word.
+ */
+function searchProducts(products, search) {
+    return products.filter((e) => e.getName().includes(search) || e.getDescription().includes(search));
+}
 
+/**
+ * 
+ * @param {Review[]} products 
+ * @param {()}
+    
+ }} sortRule 
+ */
+function sortProducts(products, sortRule) {
+    return products.sort(sortRule);
 }
 
 
-let p = new Product(1, "T-short", "description", 20, "Abibas", ["1", "2", "3", "4", "5", "1"]);
-console.log(p.getSizes());
-p.deleteSize(5);
-console.log(p.getSizes());
+//Generating data for tests.
+const reviewsNumber = 20;
+const reviews = [];
+for (let i = 0; i < reviewsNumber; i++) {
+    let j = i % 5 == 0 ? 1 : i;
+    const rating = {
+        service: j,
+        price: j,
+        value: j,
+        quality: j,
+    };
+    reviews.push(new Review(i, `user ${i}`, new Date(), `some comment`, rating));
+}
+
+const productsNumber = 20;
+const products = [];
+for (let i = 0; i < productsNumber; i++) {
+    const sizes = [i, i + 2, i * 3, i + i];
+    const name = `${i}-T-shirt`;
+    products.push(new Product(i, name, `cool ${name}`, i * 10, `${i}-Nike`, sizes, i + i, i * 2 + 1, new Date(), reviews));
+}
+
+function toConsoleBtLines(array) {
+    for (let i = 0; i < array.length; i++) {
+        console.log(array[i]);
+    }
+    console.log('\n');
+}
+
+//tests
+toConsoleBtLines(searchProducts(products, `2`));// mas of 2 products
+toConsoleBtLines(searchProducts(products, `cool 2`));// mas of 1 product
+
+toConsoleBtLines(sortProducts(products, (a, b) => b.getPrice() - a.getPrice()));
+
 
