@@ -24,6 +24,18 @@ export class AbstractProduct {
         this.date = date;
         this.brand = brand;
     }
+
+    /**
+     * Gets value or sets sets a new value.
+     * If we need get, put only property in args.
+     * @param {string} property name of property.
+     * @param {*} value new value.
+     * @returns value or nothing.
+     */
+    property(property, value = undefined) {
+        if (value === undefined) return this[property];
+        this[property] = value;
+    }
 }
 //Getters and setters
 

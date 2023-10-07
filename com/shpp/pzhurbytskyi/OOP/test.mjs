@@ -61,3 +61,8 @@ log(sortProducts(products, `ID`)); // sorted by ID.
 log(sortProducts(products, `price`)); // sorted by price.
 log(sortProducts(products, `name`)); // sorted by ID.
 log(sortProducts(products, `quantity`)); // sorted by ID.
+
+console.log(e.property(`name`));
+e.property(`name`, `PS5`)
+console.log(e.property(`name`));
+console.log(e.property(`v`)); // undefined.
