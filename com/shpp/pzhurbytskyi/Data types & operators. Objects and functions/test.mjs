@@ -35,7 +35,7 @@ for (let i = 0; i < productsNumber; i++) {
  * Logging array items to console (one item = oune line)
  * @param {[]} array default array.
  */
-function toConsoleByLines(array) {
+export function toConsoleByLines(array) {
     for (let i = 0; i < array.length; i++) {
         console.log(array[i]);
     }

@@ -84,7 +84,7 @@ export function Product(ID, name, description, price, brand, sizes, activeSize, 
      * @returns finded review.
      */
     this.getReviewByID = (ID) => {
-        return reviews.filter((e) => e.getId() == ID);
+        return this.reviews.filter((e) => e.getId() == ID);
     }
 
     /**
@@ -94,9 +94,9 @@ export function Product(ID, name, description, price, brand, sizes, activeSize, 
      */
     this.getImage = (name) => {
         if (name !== undefined) {
-            return images[name]
+            return this.images[name]
         }
-        return images[0];
+        return this.images[0];
     };
 
     /**
@@ -145,7 +145,7 @@ export function Product(ID, name, description, price, brand, sizes, activeSize, 
             sumOfAllReviews += sumOfOne / keys.length;
             sumOfOne = 0;
         }
-        return sumOfAllReviews / reviews.length;
+        return sumOfAllReviews / this.reviews.length;
     }
 }
 
