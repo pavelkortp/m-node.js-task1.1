@@ -1,7 +1,7 @@
-import {Product} from "./DataTypes.js";
-import {Review} from "./DataTypes.js";
-import {searchProducts} from "./DataTypes.js";
-import {sortProducts} from "./DataTypes.js";
+import {Product} from "./DataTypes.mjs";
+import {Review} from "./DataTypes.mjs";
+import {searchProducts} from "./DataTypes.mjs";
+import {sortProducts} from "./DataTypes.mjs";
 
 //Generating data for tests.
 const reviewsNumber = 20;
