@@ -66,3 +66,4 @@ console.log(e.property(`name`));
 e.property(`name`, `PS5`)
 console.log(e.property(`name`));
 console.log(e.property(`v`)); // undefined.
+log(sortProducts(products, `getAverageRating`)); // sorted by average rating.

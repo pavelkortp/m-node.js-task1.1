@@ -152,7 +152,7 @@ AbstractProduct.prototype.deleteReview = function (review) {
  * Calculate and returns average rating for product.
  * @returns product's average rating.
  */
-AbstractProduct.prototype.getAverageRating = () => {
+AbstractProduct.prototype.getAverageRating = function () {
     let sumOfOne = 0;
     let sumOfAllReviews = 0;
     for (let i = 0; i < this.reviews.length; i++) {
