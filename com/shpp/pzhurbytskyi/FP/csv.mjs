@@ -1,7 +1,8 @@
 /**
  * Takes csv format text and retun new function.
  * @param {string} csv text in csv format. 
- * @returns function
+ * @returns function which takes any text and replaces
+ * all city-names in text to new substring with info about city.
  */
 export function csvParse(csv) {
     const topCities = csv
