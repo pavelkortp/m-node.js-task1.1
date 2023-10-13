@@ -14,3 +14,4 @@ const parsed = csvParse(`
 console.log(parsed('Kyiv is the capital of Ukraine!'));
 console.log(parsed('Kyiv is the capital of Ukraine! Kyiv'));
 console.log(parsed('Hello i am from Alushta, i like this town'));
+console.log(parsed('Hello i am from Krivyi Rih, i like this town')); //no changes

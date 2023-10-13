@@ -26,15 +26,13 @@ export function csvParse(csv) {
             return acc;
         }, {});
     return function parseLine(text) {
-        return text
-            .split(' ')
-            .map(e => {
-                if(topCities[e] !== undefined){
-                    return `${e} (${topCities[e].rating} place in the top 10 largest cities of Ukraine, population of ${topCities[e].population} humans)`;
-                }
-                return e
-            })
-            .join(' ');
+        // Finds keys in text by regex, and replace it on new line
+        return text.replace(
+            new RegExp(Object.keys(topCities).join('|'), 'g'),
+            e => `${e} (${topCities[e].rating} place in the top 10 largest cities of Ukraine,
+                 population of ${topCities[e].population} humans)`
+
+        );
     }
 }
 
