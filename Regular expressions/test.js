@@ -1,4 +1,4 @@
-import {Validator} from "./regEx.mjs"
+import {Validator} from "./regEx.js"
 
 const v = new Validator();
 //Valid

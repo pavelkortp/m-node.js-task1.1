@@ -7,14 +7,14 @@
 export function csvParse(csv) {
     const topCities = csv
         .split('\n')
-        .filter(e => !e.startsWith('#') && e !== '')
+        .filter(e => !e.startsWith('#') && e)
         .map(e => {
-            const props = e.split(',')
+            const [x, y, name, population] = e.split(',')
             return {
-                x: props[0],
-                y: props[1],
-                name: props[2],
-                population: props[3]
+                x,
+                y,
+                name,
+                population
             }
         })
         .sort((a, b) => b.population - a.population)

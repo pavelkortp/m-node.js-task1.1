@@ -1,7 +1,7 @@
-import { Clothes } from "./Clothes.mjs";
-import { Electronic } from "./Electronic.mjs";
-import { Review, searchProducts, sortProducts} from "../Data types & operators. Objects and functions/DataTypes.mjs";
-import {toConsoleByLines as log} from "../Data types & operators. Objects and functions/test.mjs";
+import { Clothes } from "./Clothes.js";
+import { Electronic } from "./Electronic.js";
+import { Review, searchProducts, sortProducts} from "../Data types & operators. Objects and functions/DataTypes.js";
+import {toConsoleByLines as log} from "../Data types & operators. Objects and functions/test.js";
 
 const reviews1 = [];
 for (let i = 0; i < 10; i++) {
@@ -59,7 +59,8 @@ products.push(new Clothes(121, 'Puma football sneakers', 'football', 65, 11, rev
 log(searchProducts(products, `sport`));//mas of 2 sneackers.
 log(sortProducts(products, `ID`)); // sorted by ID.
 log(sortProducts(products, `price`)); // sorted by price.
-log(sortProducts(products, `name`)); // sorted by ID.
+console.log('sort by name');
+log(sortProducts(products, `name`)); // sorted by name.
 log(sortProducts(products, `quantity`)); // sorted by ID.
 
 console.log(e.property(`name`));

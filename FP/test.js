@@ -1,4 +1,4 @@
-import {csvParse} from "./csv.mjs";
+import {csvParse} from "./csv.js";
 
 const parsed = csvParse(`
 44.38,34.33,Alushta,31440,
